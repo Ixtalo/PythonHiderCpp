@@ -46,7 +46,8 @@ target_link_libraries (gendatah AES)
 
 
 if(NOT(EXISTS "${CMAKE_CURRENT_BINARY_DIR}/data.h"))
-    file(CREATE_LINK "${PROJECT_SOURCE_DIR}/data.h.dummy" "${CMAKE_CURRENT_BINARY_DIR}/data.h")
+    file(COPY "${PROJECT_SOURCE_DIR}/data.h.dummy" DESTINATION "${CMAKE_CURRENT_BINARY_DIR}")
+    file(RENAME "${CMAKE_CURRENT_BINARY_DIR}/data.h.dummy" "${CMAKE_CURRENT_BINARY_DIR}/data.h")
 endif()
 
 
