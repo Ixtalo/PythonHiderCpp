@@ -1,0 +1,4 @@
+[submodule "AES"]
+	path = AES
+	url = https://github.com/SergeyBel/AES
+	branch = 3c750a190e2fea44fed702744b17acc8eb1e4557
