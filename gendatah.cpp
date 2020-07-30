@@ -26,15 +26,35 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    if (strlen(argv[1]) != 16) {
-        cerr << "key must be size 16!" << endl;;
+    size_t keyLen = strlen(argv[1]);
+    if (keyLen != 16) {
+        cerr << "key must be size 16! " << "(is " << keyLen << ")" << endl;;
         return 2;
     }
 
     // read file into string
-    std::ifstream fin(argv[2]);
-    std::string content((std::istreambuf_iterator<char>(fin)), std::istreambuf_iterator<char>());
-    fin.close();
+    string content;
+    try
+    {
+        ifstream fin(argv[2]);
+        if (!fin.good()) {
+            throw std::runtime_error("Could not open file!");
+        }
+        content = string((istreambuf_iterator<char>(fin)), istreambuf_iterator<char>());
+        fin.close();
+    }
+    catch(const exception& e)
+    {
+        cerr << "ERROR: " << e.what() << endl;
+        return 3;
+    }
+
+    if (content.empty()) {
+        cerr << "File is empty, no data!" << endl;
+        return 4;
+    }
+
+    cout << "Size input file '" << argv[2] << "': " << content.length() << endl;
 
     // convert string into unsigned char*
     unsigned char *plain = new unsigned char[content.length()+1];
@@ -54,7 +74,7 @@ int main(int argc, char *argv[])
     cout << "encLen: " << encLen << endl;
 
     // write to header file
-    std::ofstream fout("data.h");
+    ofstream fout("data.h");
     // write key, must be a macro!
     fout << "#define KEY ";
     for (size_t i = 0; i < 16-1; i++) {
