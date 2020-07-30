@@ -7,9 +7,11 @@
  * 3. run ./runner
  * 
  * Use Docker to compile for a specific Python version:
- *   `docker run --rm -ti -v "$PWD:/x" -w "/x" python:3.6.8 g++ -o runner runner.cpp -fPIC -I/usr/local/include/python3.6m -I/usr/local/include/python3.6m  -Wno-unused-result -Wsign-compare  -DNDEBUG -g -fwrapv -O3 -Wall -L/usr/local/lib -lpython3.6m -lpthread -ldl  -lutil -lm  -Xlinker -export-dynamic`
+ *   cd build/
+ *   `docker run --rm -ti -v "$PWD/../:/x" -w "/x/build/" python:3.6.8 g++ -o runner ../runner.cpp -fPIC -I/usr/local/include/python3.6m -I/usr/local/include/python3.6m  -Wno-unused-result -Wsign-compare  -DNDEBUG -g -fwrapv -O3 -Wall -L/usr/local/lib -lpython3.6m -lpthread -ldl  -lutil -lm  -Xlinker -export-dynamic -I. -L. -lAES`
  * To test that:
- *   `docker run --rm -ti -v "$PWD:/x" -w "/x" python:3.6.8 ./runner`
+ *   `python3 -m pip install --user utmp`
+ *   `docker run --rm -ti -v "$PWD:/x" -w "/x" -v "$HOME/.local/lib/python3.8/:/root/.local/lib/python3.6:ro" python:3.6.8 ./runner`
  * 
  * Ixtalo, 29.07.2020
  * 
