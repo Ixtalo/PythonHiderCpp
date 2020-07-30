@@ -21,6 +21,8 @@ Compiled Python files (.pyc/.pyo) files do show parts of the Python code in plai
 - C++ compiler such as GNU G++
 - C++ AES implementation from https://github.com/SergeyBel/AES
   - Tested with tag ["v1.0.0"](https://github.com/SergeyBel/AES/releases/tag/v.1.0.0), revision [3c750a1](https://github.com/SergeyBel/AES/commit/3c750a190e2fea44fed702744b17acc8eb1e4557)
+- Python Obfuscator
+  - e.g., https://github.com/chris-rands/emojify
 
 
 ## How-To Run
@@ -31,12 +33,13 @@ Compiled Python files (.pyc/.pyo) files do show parts of the Python code in plai
    `mkdir build && pushd build && cmake ..`
 3. compile:
    `make clean all `
-4. encrypt Python code:
+4. optionally, obfuscate your code
+5. encrypt Python code:
    `./gendatah KEY PYTHONFILE.py`
     * KEY must have a length of 16 characters!
-5. rebuild:
+6. rebuild:
    `make clean all`
-6. run:
+7. run:
    `./runner`
 
 After each change to your `PYTHONFILE.py` you have to do:
@@ -83,6 +86,10 @@ There are otehr solutions which do compile Python code to binaries, but most of 
 - py2app
 - cx_freeze
 - pyinstaller
+
+Obfuscation:
+- https://github.com/chris-rands/emojify
+- https://github.com/dashingsoft/pyarmor
 
 
 ## License
