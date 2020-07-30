@@ -12,6 +12,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <iomanip>
+#include <ctime>
 
 // https://github.com/SergeyBel/AES
 #include "AES/AES.h"
@@ -75,6 +77,12 @@ int main(int argc, char *argv[])
 
     // write to header file
     ofstream fout("data.h");
+    fout << "// input file: " << argv[2] << endl;
+    fout << "// key: " << argv[1] << endl;
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    fout << "// time: " << std::put_time(&tm, "%FT%TZ") << endl;
+    fout << endl;
     // write key, must be a macro!
     fout << "#define KEY ";
     for (size_t i = 0; i < 16-1; i++) {

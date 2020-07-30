@@ -1,6 +1,7 @@
 cmake_minimum_required (VERSION 3.12)
 project (PythonHiderCpp)
 
+set (CMAKE_CXX_STANDARD 11)
 
 
 ## https://stackoverflow.com/questions/18968979/how-to-get-colorized-output-with-cmake
