@@ -21,8 +21,7 @@ Compiled Python files (.pyc/.pyo) files do show parts of the Python code in plai
 - C++ compiler such as GNU G++
 - C++ AES implementation from https://github.com/SergeyBel/AES
   - Tested with tag ["v1.0.0"](https://github.com/SergeyBel/AES/releases/tag/v.1.0.0), revision [3c750a1](https://github.com/SergeyBel/AES/commit/3c750a190e2fea44fed702744b17acc8eb1e4557)
-- Python Obfuscator
-  - e.g., https://github.com/chris-rands/emojify
+- Python Obfuscator (see [below](#python-code-obfuscation))
 
 
 ## How-To Run
@@ -87,9 +86,17 @@ There are otehr solutions which do compile Python code to binaries, but most of 
 - cx_freeze
 - pyinstaller
 
-Obfuscation:
-- https://github.com/chris-rands/emojify
-- https://github.com/dashingsoft/pyarmor
+
+## Python Code Obfuscation
+
+- pyminifier, https://github.com/liftoff/pyminifier, does work **without obfuscation**, works just with minifying (stripping comments etc.).
+- Emojify, https://github.com/chris-rands/emojify, does work, but beware: the comments are not stripped!
+
+These did not work:
+- PyArmor, https://github.com/dashingsoft/pyarmor, does **not** work because of needed [runtime package](https://pyarmor.readthedocs.io/en/latest/usage.html#distributing-obfuscated-scripts)
+- PyObfx, https://github.com/PyObfx/PyObfx, did **not** work (`SyntaxError: invalid syntax`).
+- Opy, https://github.com/BuvinJT/Opy, did **not** work (`NameError: name 'l11l11l_opy_' is not defined`).
+- Python Code Obfuscator, https://github.com/brandonasuncion/Python-Code-Obfuscator, `TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'`
 
 
 ## License
